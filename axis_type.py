@@ -1,13 +1,12 @@
 import sys
 sys.path.append("../")
 import numpy as np
-from    warnings        import warn
-from    typing          import List, Union
-from    spatialmath     import SE3
-from    copy            import deepcopy
-from    custom_type.bot_cart_type\
-                        import BotCartType
+from    warnings          import warn
+from    typing            import List, Union
 
+from    spatialmath       import SE3
+from    copy              import deepcopy
+from    utils.print_flush import print_flush as print
 
 class AxisType():
     __slots__ = ("axis_pts","name")

@@ -1,8 +1,9 @@
 from copy import deepcopy
 import sys 
 sys.path.append("../")
+from    typing                     import List,Union
 from    custom_type.bot_base_type  import BotBaseType
-from    typing          import List,Union
+from    utils.print_flush          import print_flush as print
 
 class BotJointType(BotBaseType):
 

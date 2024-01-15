@@ -12,6 +12,7 @@ import sys
 sys.path.append("../")
 
 from    custom_type.bot_base_type  import BotBaseType
+from    utils.print_flush          import print_flush as print
 
 class BotLinFitType(BotBaseType):
     __slots__ = ("jt_dic","name","leg_sz","jont_sz","jt_nam_arr")

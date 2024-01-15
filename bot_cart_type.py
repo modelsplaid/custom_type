@@ -6,7 +6,7 @@ from    copy                       import deepcopy
 from    typing                     import List,Union
 from    spatialmath                import SE3
 from    custom_type.bot_base_type  import BotBaseType
-
+from    utils.print_flush          import print_flush as print
 class BotCartType(BotBaseType):
     __slots__ = ("cart_dic","name"   ,"ct_nam_arr","leg_sz","action_perid"
                  "lft_ids" ,"rht_ids","leg_names" ,"_iter_idx_")
