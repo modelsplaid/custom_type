@@ -3,12 +3,10 @@ import numpy as np
 import math 
 sys.path.append("../")
 
-from    copy                     import deepcopy
-from    typing                   import List
 from    spatialmath              import SE3
+from    typing                   import List
+from    copy                     import deepcopy
 from    custom_type.hexagon_type import HexgnTranType
-
-print("bot_vecs_type.py")
 
 class BotVec:
     

@@ -38,6 +38,13 @@ class BotJointType(BotBaseType):
                 self.jt_dic = deepcopy(joint_dic)
         self.name = name
 
+    def check_any_None(self):
+        for i in range(self.leg_sz):
+            c,f,t = self[i]
+            if c==None or f==None or t==None:
+                return True
+        return False
+
     def key_str2int(self,str_key_dic):
         '''
         After json.load(out_file), json does not support int type key in dictionary, 
@@ -257,6 +264,10 @@ def test_load_json():
     ct2.set_by_strkey(jtdic_tmplt)
 
     print("check equal: "+str(ct1==ct2) )
+    print(ct2.check_any_None())
+    ct2.set_arr_by_ileg(3,[None,None,None])
+    print(ct2.check_any_None())
+
 
 if __name__ == "__main__":
     test_load_json()
