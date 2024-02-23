@@ -177,7 +177,10 @@ class JoyType:
 
     def get_found(self):
         return self.joy_dic["found"]
-    
+
+    def check_valid(self)->bool:
+        pass 
+        # todo: here
     def __eq__(self,obj):
         """
         type obj: JoyType   
@@ -185,9 +188,7 @@ class JoyType:
         if isinstance(obj,JoyType) == False: 
             return False
         
-        if  self.joy_dic["found"      ] != obj.joy_dic["found"      ] or \
-            self.joy_dic["connected"  ] != obj.joy_dic["connected"  ] or \
-            self.joy_dic["dpadUp"     ] != obj.joy_dic["dpadUp"     ] or \
+        if  self.joy_dic["dpadUp"     ] != obj.joy_dic["dpadUp"     ] or \
             self.joy_dic["dpadDown"   ] != obj.joy_dic["dpadDown"   ] or \
             self.joy_dic["dpadLeft"   ] != obj.joy_dic["dpadLeft"   ] or \
             self.joy_dic["dpadRight"  ] != obj.joy_dic["dpadRight"  ] or \
