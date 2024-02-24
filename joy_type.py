@@ -177,8 +177,25 @@ class JoyType:
 
     def get_found(self):
         return self.joy_dic["found"]
-
+    
+    def check_mov_acts(self)->bool:
+        """
+        Check if any action button was pressed
+        """
+        val =  self.get_a_btn()+ \
+               self.get_b_btn()+ \
+               self.get_x_btn()+ \
+               self.get_y_btn()
+               
+        if val==0:
+            return False
+        else:
+            return True  
+        
     def check_valid(self)->bool:
+        """
+        Check if any button was pressed
+        """
         val =  self.get_a_btn()         +\
                self.get_b_btn()         +\
                self.get_back()          +\
