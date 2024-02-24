@@ -179,24 +179,26 @@ class JoyType:
         return self.joy_dic["found"]
 
     def check_valid(self)->bool:
-        val =  self.get_a_btn()        +\
-               self.get_b_btn()        +\
-               self.get_back()         +\
-               self.get_dpad_down()    +\
-               self.get_dpad_left()    +\
-               self.get_dpad_right()   +\
-               self.get_dpad_up()      +\
-               self.get_guide()        +\
-               self.get_lft_bumper()   +\
-               self.get_lft_stick()    +\
-               self.get_lft_stick_btn()+\
-               self.get_lft_trigger()  +\
-               self.get_rht_bumper()   +\
-               self.get_rht_stick()    +\
-               self.get_rht_stick_btn()+\
-               self.get_rht_trigger()  +\
-               self.get_start()        +\
-               self.get_x_btn()        +\
+        val =  self.get_a_btn()         +\
+               self.get_b_btn()         +\
+               self.get_back()          +\
+               self.get_dpad_down()     +\
+               self.get_dpad_left()     +\
+               self.get_dpad_right()    +\
+               self.get_dpad_up()       +\
+               self.get_guide()         +\
+               self.get_lft_bumper()    +\
+               self.get_lft_stick()[0]  +\
+               self.get_lft_stick()[1]  +\
+               self.get_lft_stick_btn() +\
+               self.get_lft_trigger()   +\
+               self.get_rht_bumper()    +\
+               self.get_rht_stick()[0]  +\
+               self.get_rht_stick()[1]  +\
+               self.get_rht_stick_btn() +\
+               self.get_rht_trigger()   +\
+               self.get_start()         +\
+               self.get_x_btn()         +\
                self.get_y_btn()
         if val==0:
             return False
