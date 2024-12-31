@@ -4,26 +4,49 @@ import time
 import sys
 from copy       import deepcopy
 
+        # "0" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t0  step1 move lfnt leg" },
+        # "1" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t1  step1 move lfnt leg" },
+        # "2" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t2  step1 move lfnt leg" },
+        # "3" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t3  step1 move lfnt leg" },
+        # "4" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t4  step2 move rfnt leg" },
+        # "5" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t5  step2 move rfnt leg" },
+        # "6" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t6  step2 move rfnt leg" },
+        # "7" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t7  step2 move rfnt leg" },
+        # "8" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t8  step3 move midd leg" },
+        # "9" : {"rm": {"idx":1,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t9  step3 move midd leg" },
+        # "10": {"rm": {"idx":2,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t10 step3 move midd leg" },
+        # "11": {"rm": {"idx":3,"mode":"torq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t11 step3 move midd leg" },
+        # "12": {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t12  step4 move bak leg" },
+        # "13": {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":1,"mode":"pose","force_dir":[1,0,1]} ,"name": "t13  step4 move bak leg" },
+        # "14": {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":2,"mode":"pose","force_dir":[1,0,1]} ,"name": "t14  step4 move bak leg" },
+        # "15": {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"rb": {"idx":3,"mode":"torq","force_dir":[1,0,1]} ,"name": "t15  step4 move bak leg" }
+    
+
+
 class GaitIdxSeqsType:
     __slots__ = ("gait_seqs","name","map_nam2indx","sqs_len")
     def __init__(self, gait_seqs=None, name=None):
 
         # Row: pose sequence number. Colum: leg number.  
         seqs_tmplt = \
-            {
-                0 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 2, "name": "t0  step1" },
-                1 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 3 ,"name": "t1  step1" },
-                2 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 0 ,"name": "t2  step1" },
-                3 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t3  step1" },
-                4 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1, "name": "t4  step2" },
-                5 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t5  step2" },
-                6 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t6  step2" },
-                7 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t7  step2" },
-                8 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1, "name": "t8  step3" },
-                9 : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t9  step3" },
-                10: {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t10 step3" },
-                11: {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 1 ,"name": "t11 step3" }
-            }
+        {
+        0  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t0  step1.1 move lfnt leg" },
+        1  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t1  step1.2 move lfnt leg" },
+        2  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t2  step1.3 move lfnt leg" },
+        3  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t3  step1.4 move lfnt leg" },
+        4  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t4  step2.1 move rfnt leg" },
+        5  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t5  step2.2 move rfnt leg" },
+        6  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t6  step2.3 move rfnt leg" },
+        7  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t7  step2.4 move rfnt leg" },
+        8  : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t8  step3.1 move midd leg" },
+        9  : {"rm": {"idx":1,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t9  step3.2 move midd leg" },
+        10 : {"rm": {"idx":2,"mode":"pose" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t10 step3.3 move midd leg" },
+        11 : {"rm": {"idx":3,"mode":"torq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t11 step3.4 move midd leg" },
+        12 : {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":0,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":0,"mode":"pose","force_dir":[1,0,1]} ,"name": "t12  step4.1 move bak leg" },
+        13 : {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":1,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":1,"mode":"pose","force_dir":[1,0,1]} ,"name": "t13  step4.2 move bak leg" },
+        14 : {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":2,"mode":"pose","force_dir":[1,0,1]},"rb": {"idx":2,"mode":"pose","force_dir":[1,0,1]} ,"name": "t14  step4.3 move bak leg" },
+        15 : {"rm": {"idx":3,"mode":"porq" ,"force_dir":[1,0,1]},"rf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lf": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lm": {"idx":3,"mode":"porq","force_dir":[1,0,1]},"lb": {"idx":3,"mode":"torq","force_dir":[1,0,1]},"rb": {"idx":3,"mode":"torq","force_dir":[1,0,1]} ,"name": "t15  step4.4 move bak leg" }
+        }
         # Leg index order is: 0:rm, 1:rf,...counter-clock... 5:rb
         self.map_nam2indx = ["rm","rf","lf","lm","lb","rb"]
 
@@ -57,13 +80,13 @@ class GaitIdxSeqsType:
         return len(self.gait_seqs)
     
     def get_by_nam(self,tim_idx,leg_nam_str):
-        return self.gait_seqs[tim_idx][leg_nam_str]
+        return self.gait_seqs[tim_idx][leg_nam_str]["idx"]
     
     def get_by_idx(self,tim_idx,leg_idx):
         # tim_idx: time step index
         # leg_idx: leg index, range[0,5] 
         leg_nam_str = self.map_nam2indx[leg_idx]
-        return self.gait_seqs[tim_idx][leg_nam_str]
+        return self.gait_seqs[tim_idx][leg_nam_str]["idx"]
 
     def get_seqs_by_idxs(self,star_tim_idx,end_tim_idx,star_leg_idx,end_leg_idx):
         # return: A 2*2 matrix Row: time unit. Colum: legs index
@@ -73,7 +96,7 @@ class GaitIdxSeqsType:
             for t_idx in range(star_tim_idx,end_tim_idx): # loop each row 
                 one_leg_seqs =[]
                 for leg_idx in range(star_leg_idx,end_leg_idx):
-                    one_leg_seqs = one_leg_seqs+[self.get_one_by_idx(t_idx,leg_idx)]
+                    one_leg_seqs = one_leg_seqs+[self.get_by_idx(t_idx,leg_idx)]
                 seq_mat = seq_mat+[one_leg_seqs]
         return seq_mat
     
@@ -106,5 +129,11 @@ def test_load_json():
     gsqs = gs1.get_seqs_by_idxs(0,5,0,6)
     print(gsqs)
 
+def test_load_json2():
+    gs1 = GaitIdxSeqsType()
+    print("gs1 \n",gs1)
+
+
 if __name__ == "__main__":
-    test_load_json()
+    #test_load_json()
+    test_load_json2()
