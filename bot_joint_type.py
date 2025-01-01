@@ -15,6 +15,17 @@ class BotJointType(BotBaseType):
             if (isinstance(joint_dic,dict) == False or isinstance(name,str)== False):
                 raise NameError('fatal error: Incorrect arguments type')
 
+        #
+        # todo here: work on new type of joint dictionary
+        #
+        # jtdic_tmplt = {
+        #         0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
+        #         1: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-front" , "id": 1},
+        #         2: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-front"  , "id": 2},
+        #         3: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-middle" , "id": 3},
+        #         4: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-back"   , "id": 4},
+        #         5: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-back"  , "id": 5}} 
+
         jtdic_tmplt = {
                 0: {"coxa": 0, "femur": 0, "tibia": 0, "name": "right-middle", "id": 0},
                 1: {"coxa": 0, "femur": 0, "tibia": 0, "name": "right-front" , "id": 1},
