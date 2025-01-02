@@ -14,25 +14,17 @@ class BotJointType(BotBaseType):
         if joint_dic is not None: 
             if (isinstance(joint_dic,dict) == False or isinstance(name,str)== False):
                 raise NameError('fatal error: Incorrect arguments type')
+        # mode: pose, torq, porq
 
-        #
-        # todo here: work on new type of joint dictionary
-        #
-        # jtdic_tmplt = {
-        #         0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
-        #         1: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-front" , "id": 1},
-        #         2: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-front"  , "id": 2},
-        #         3: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-middle" , "id": 3},
-        #         4: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-back"   , "id": 4},
-        #         5: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-back"  , "id": 5}} 
-
-        jtdic_tmplt = {
-                0: {"coxa": 0, "femur": 0, "tibia": 0, "name": "right-middle", "id": 0},
-                1: {"coxa": 0, "femur": 0, "tibia": 0, "name": "right-front" , "id": 1},
-                2: {"coxa": 0, "femur": 0, "tibia": 0, "name": "left-front"  , "id": 2},
-                3: {"coxa": 0, "femur": 0, "tibia": 0, "name": "left-middle" , "id": 3},
-                4: {"coxa": 0, "femur": 0, "tibia": 0, "name": "left-back"   , "id": 4},
-                5: {"coxa": 0, "femur": 0, "tibia": 0, "name": "right-back"  , "id": 5}} 
+        jtdic_tmplt = \
+                {
+                0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
+                1: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-front" , "id": 1},
+                2: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-front"  , "id": 2},
+                3: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-middle" , "id": 3},
+                4: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-back"   , "id": 4},
+                5: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-back"  , "id": 5}
+                } 
         
         self.leg_sz     = super().LEG_SZ
         self.jont_sz    = super().JOINT_SZ
@@ -83,9 +75,12 @@ class BotJointType(BotBaseType):
             c_str = "coxa: ["
             f_str = " femur: ["
             t_str = " tibia: ["
-            c = self.jt_dic[j]["coxa"]
-            f = self.jt_dic[j]["femur"]
-            t = self.jt_dic[j]["tibia"]
+            
+            print("jt_dic: ",j,",",self.jt_dic[j])
+            
+            c = self.jt_dic[j]["coxa"]["val"]
+            f = self.jt_dic[j]["femur"]["val"]
+            t = self.jt_dic[j]["tibia"]["val"]
 
             c_str = c_str + f"{c:+8.2f},"
             f_str = f_str + f"{f:+8.2f},"
@@ -159,7 +154,7 @@ class BotJointType(BotBaseType):
         leg_idx : range 0-5
         '''
         jt_nam = self.jt_nam_arr[joint_idx]
-        return self.jt_dic[leg_idx][jt_nam]
+        return self.jt_dic[leg_idx][jt_nam]["val"]
 
 
     def get_arr_by_ileg(self,leg_idx)->List[Union[float,float,float]]:
@@ -172,7 +167,7 @@ class BotJointType(BotBaseType):
 
         for joint_idx in range(self.jont_sz):
             jt_nam = self.jt_nam_arr[joint_idx]
-            leg_arr[joint_idx] = self.jt_dic[leg_idx][jt_nam]
+            leg_arr[joint_idx] = self.jt_dic[leg_idx][jt_nam]["val"]
 
         return leg_arr
 
@@ -191,17 +186,17 @@ class BotJointType(BotBaseType):
 
         for joint_idx in range(self.jont_sz):
             jt_nam = self.jt_nam_arr[joint_idx]
-            self.jt_dic[leg_idx][jt_nam] = leg_arr[joint_idx] 
+            self.jt_dic[leg_idx][jt_nam]["val"] = leg_arr[joint_idx] 
 
         return leg_arr
 
 
     def set_by_idx(self,leg_idx,joint_idx,joint_val):
         jt_nam = self.jt_nam_arr[joint_idx]
-        self.jt_dic[leg_idx][jt_nam] = joint_val
+        self.jt_dic[leg_idx][jt_nam]["val"] = joint_val
 
     def set_by_jt_nam(self,leg_idx,joint_nam,joint_val):
-        self.jt_dic[leg_idx][joint_nam] = joint_val
+        self.jt_dic[leg_idx][joint_nam]["val"] = joint_val
 
     def set_all_jt(self,jt_val:float):
         """
@@ -239,9 +234,9 @@ class BotJointType(BotBaseType):
         
         obj_dic=obj.get_jt_dic()
         for key in self.jt_dic.keys():
-            if self.jt_dic[key][self.jt_nam_arr[0]] != obj_dic[key][self.jt_nam_arr[0]] or \
-               self.jt_dic[key][self.jt_nam_arr[1]] != obj_dic[key][self.jt_nam_arr[1]] or \
-               self.jt_dic[key][self.jt_nam_arr[2]] != obj_dic[key][self.jt_nam_arr[2]]:
+            if self.jt_dic[key][self.jt_nam_arr[0]]["val"] != obj_dic[key][self.jt_nam_arr[0]]["val"] or \
+               self.jt_dic[key][self.jt_nam_arr[1]]["val"] != obj_dic[key][self.jt_nam_arr[1]]["val"] or \
+               self.jt_dic[key][self.jt_nam_arr[2]]["val"] != obj_dic[key][self.jt_nam_arr[2]]["val"]:
                 return False
         return True
 
@@ -252,32 +247,37 @@ def test_load_json():
     
     jtdic_tmplt = \
         {
-        "0": {"coxa": 1971,"femur": 2017,"tibia": 2092 ,"name": "right-middle" ,"id": 0},
-        "1": {"coxa": 2600,"femur": 2070,"tibia": 1941 ,"name": "right-front"  ,"id": 1},
-        "2": {"coxa": 1396,"femur": 2045,"tibia": 2111 ,"name": "left-front"   ,"id": 2},
-        "3": {"coxa": 2056,"femur": 2137,"tibia": 2100 ,"name": "left-middle"  ,"id": 3},
-        "4": {"coxa": 2571,"femur": 2100,"tibia": 2050 ,"name": "left-back"    ,"id": 4},
-        "5": {"coxa": 1542,"femur": 1841,"tibia": 1611 ,"name": "right-back"   ,"id": 5}
+        0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
+        1: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-front" , "id": 1},
+        2: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-front"  , "id": 2},
+        3: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-middle" , "id": 3},
+        4: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-back"   , "id": 4},
+        5: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-back"  , "id": 5}
         }
     
     ct1 = BotJointType()
     ct1.set_by_strkey(jtdic_tmplt)
     jtdic_tmplt = \
         {
-        "0": {"coxa": 1971,"femur": 2017,"tibia": 2092 ,"name": "right-middle" ,"id": 0},
-        "1": {"coxa": 2600,"femur": 2070,"tibia": 1941 ,"name": "right-front"  ,"id": 1},
-        "2": {"coxa": 1396,"femur": 2045,"tibia": 2111 ,"name": "left-front"   ,"id": 2},
-        "3": {"coxa": 2056,"femur": 2137,"tibia": 2100 ,"name": "left-middle"  ,"id": 3},
-        "4": {"coxa": 2571,"femur": 2100,"tibia": 2050 ,"name": "left-back"    ,"id": 4},
-        "5": {"coxa": 1542,"femur": 1841,"tibia": 1611.0001 ,"name": "right-back"   ,"id": 5}
+        0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
+        1: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-front" , "id": 1},
+        2: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-front"  , "id": 2},
+        3: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-middle" , "id": 3},
+        4: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "left-back"   , "id": 4},
+        5: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-back"  , "id": 5}
         }
     ct2 = BotJointType()
     ct2.set_by_strkey(jtdic_tmplt)
 
+    print("ct2: \n")
+    print(str(ct2))
+    ct2.print_table()
+    
     print("check equal: "+str(ct1==ct2) )
     print(ct2.check_any_None())
     ct2.set_arr_by_ileg(3,[None,None,None])
     print(ct2.check_any_None())
+
 
 
 if __name__ == "__main__":
