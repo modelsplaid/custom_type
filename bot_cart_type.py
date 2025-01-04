@@ -26,12 +26,12 @@ class BotCartType(BotBaseType):
                 raise NameError('fatal error: Incorrect arguments type')
     
         cart_tmplt = {
-            0: {"x": 0,"y": 0,"z": 0,"name": "right-middle","id": 0},
-            1: {"x": 0,"y": 0,"z": 0,"name": "right-front" ,"id": 1},
-            2: {"x": 0,"y": 0,"z": 0,"name": "left-front"  ,"id": 2},
-            3: {"x": 0,"y": 0,"z": 0,"name": "left-middle" ,"id": 3},
-            4: {"x": 0,"y": 0,"z": 0,"name": "left-back"   ,"id": 4},
-            5: {"x": 0,"y": 0,"z": 0,"name": "right-back"  ,"id": 5}}
+            0: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "right-middle","id": 0},
+            1: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "right-front" ,"id": 1},
+            2: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "left-front"  ,"id": 2},
+            3: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "left-middle" ,"id": 3},
+            4: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "left-back"   ,"id": 4},
+            5: {"x": {"val":0,"mode":"pose"},"y": {"val":0,"mode":"pose"},"z": {"val":0,"mode":"pose"},"name": "right-back"  ,"id": 5}}
         
         self.ct_nam_arr = ["x","y","z"]
 
@@ -50,7 +50,7 @@ class BotCartType(BotBaseType):
         inc_val: Increase quantity   
         """
         ct_nam = self.ct_nam_arr[cart_idx]
-        self.cart_dic[leg_idx][ct_nam] = self.cart_dic[leg_idx][ct_nam]+inc_val
+        self.cart_dic[leg_idx][ct_nam]["val"] = self.cart_dic[leg_idx][ct_nam]["val"]+inc_val
 
     def transf_lft_pts(self,rxyz_deg=[0,0,0],txyz=[0,0,0]):
         """
@@ -62,13 +62,13 @@ class BotCartType(BotBaseType):
         transf = T*R
 
         for id in self.lft_ids:
-            x = self.cart_dic[id]["x"]
-            y = self.cart_dic[id]["y"]
-            z = self.cart_dic[id]["z"]
+            x = self.cart_dic[id]["x"]["val"]
+            y = self.cart_dic[id]["y"]["val"]
+            z = self.cart_dic[id]["z"]["val"]
             arr = transf*[x,y,z]
-            self.cart_dic[id]["x"] = arr[0][0] 
-            self.cart_dic[id]["y"] = arr[1][0]  
-            self.cart_dic[id]["z"] = arr[2][0]  
+            self.cart_dic[id]["x"]["val"] = arr[0][0] 
+            self.cart_dic[id]["y"]["val"] = arr[1][0]  
+            self.cart_dic[id]["z"]["val"] = arr[2][0]  
 
     def transf_rht_pts(self,rxyz_deg=[0,0,0],txyz=[0,0,0]):
         """
@@ -79,13 +79,13 @@ class BotCartType(BotBaseType):
         T = SE3.Trans(txyz[0],txyz[1],txyz[2])
         transf = T*R
         for id in self.rht_ids: 
-            x = self.cart_dic[id]["x"]
-            y = self.cart_dic[id]["y"]
-            z = self.cart_dic[id]["z"]
+            x = self.cart_dic[id]["x"]["val"]
+            y = self.cart_dic[id]["y"]["val"]
+            z = self.cart_dic[id]["z"]["val"]
             arr = transf*[x,y,z]
-            self.cart_dic[id]["x"] = arr[0][0] 
-            self.cart_dic[id]["y"] = arr[1][0]  
-            self.cart_dic[id]["z"] = arr[2][0]  
+            self.cart_dic[id]["x"]["val"] = arr[0][0] 
+            self.cart_dic[id]["y"]["val"] = arr[1][0]  
+            self.cart_dic[id]["z"]["val"] = arr[2][0]  
 
     def is_all_gnd(self)->bool:
         """
@@ -124,9 +124,9 @@ class BotCartType(BotBaseType):
             x_str = "x: ["
             y_str = " y: ["
             z_str = " z: ["
-            x = self.cart_dic[j]["x"]
-            y = self.cart_dic[j]["y"]
-            z = self.cart_dic[j]["z"]
+            x = self.cart_dic[j]["x"]["val"]
+            y = self.cart_dic[j]["y"]["val"]
+            z = self.cart_dic[j]["z"]["val"]
 
             x_str = x_str + f"{x:+8.2f},"
             y_str = y_str + f"{y:+8.2f},"
@@ -233,9 +233,9 @@ class BotCartType(BotBaseType):
         ct_y = self.ct_nam_arr[1]
         ct_z = self.ct_nam_arr[2]
 
-        x = self.cart_dic[leg_idx][ct_x]
-        y = self.cart_dic[leg_idx][ct_y]
-        z = self.cart_dic[leg_idx][ct_z]
+        x = self.cart_dic[leg_idx][ct_x]["val"]
+        y = self.cart_dic[leg_idx][ct_y]["val"]
+        z = self.cart_dic[leg_idx][ct_z]["val"]
 
         return [x,y,z]
     
@@ -247,7 +247,7 @@ class BotCartType(BotBaseType):
         axis_idx: range 0,1,2 map to x,y,z
         '''
         ct_nam = self.ct_nam_arr[cart_idx]
-        return self.cart_dic[leg_idx][ct_nam]
+        return self.cart_dic[leg_idx][ct_nam]["val"]
     
     def get_ct_dict(self):
         return self.cart_dic
@@ -264,9 +264,9 @@ class BotCartType(BotBaseType):
         ct_nam_x = self.ct_nam_arr[0]
         ct_nam_y = self.ct_nam_arr[1]
         ct_nam_z = self.ct_nam_arr[2]
-        self.cart_dic[leg_idx][ct_nam_x] = cat_arr[0]
-        self.cart_dic[leg_idx][ct_nam_y] = cat_arr[1]
-        self.cart_dic[leg_idx][ct_nam_z] = cat_arr[2]
+        self.cart_dic[leg_idx][ct_nam_x]["val"] = cat_arr[0]
+        self.cart_dic[leg_idx][ct_nam_y]["val"] = cat_arr[1]
+        self.cart_dic[leg_idx][ct_nam_z]["val"] = cat_arr[2]
      
     def set_by_idx(self,leg_idx:int,cart_idx:int,cart_val:float): 
         '''
@@ -275,14 +275,14 @@ class BotCartType(BotBaseType):
         leg_idx range : leg 0 -- leg 5 
         '''
         ct_nam = self.ct_nam_arr[cart_idx]
-        self.cart_dic[leg_idx][ct_nam] = cart_val
+        self.cart_dic[leg_idx][ct_nam]["val"] = cart_val
 
     def set_by_ct_nam(self,leg_idx:int,cart_nam:str,cart_val:float):
         '''
         leg_idx range: 0 --5 
         Choices for  cart_nam are: "x","y","z"
         '''
-        self.cart_dic[leg_idx][cart_nam] = cart_val
+        self.cart_dic[leg_idx][cart_nam]["val"] = cart_val
 
     def set_by_strkey(self,json_str:dict):
         '''
@@ -369,71 +369,18 @@ class BotCartType(BotBaseType):
         full_str = self.form_str()
         return full_str     
 
-def test():
-    import time
-    from random import random
-    for i in range(50):
-        cdic_tmplt = \
-            {
-            "0": {"x": 19*random(),"y": 19*random(),"z": 19*random() ,"name": "right-middle" ,"id": 0},
-            "1": {"x": 26*random(),"y": 26*random(),"z": 26*random() ,"name": "right-front"  ,"id": 1},
-            "2": {"x": 13*random(),"y": 13*random(),"z": 13*random() ,"name": "left-front"   ,"id": 2},
-            "3": {"x": 20*random(),"y": 20*random(),"z": 20*random() ,"name": "left-middle"  ,"id": 3},
-            "4": {"x": 25*random(),"y": 25*random(),"z": 25*random() ,"name": "left-back"    ,"id": 4},
-            "5": {"x": 15*random(),"y": 15*random(),"z": 15*random() ,"name": "right-back"   ,"id": 5}
-            }
-        
-        ct1 = BotCartType()
-        ct1.set_by_strkey(cdic_tmplt)
-        ct1.print_table()
-        time.sleep(0.1)
-
-    #print("ct1: "+str(ct1) )
-
-def test_transform():
-    dic_tmplt = \
-        {
-        0: {"x": 1,"y": 2,"z": 3 ,"name": "right-middle" ,"id": 0},
-        1: {"x": 1,"y": 2,"z": 3 ,"name": "right-front"  ,"id": 1},
-        2: {"x": 1,"y": 2,"z": 3 ,"name": "left-front"   ,"id": 2},
-        3: {"x": 1,"y": 2,"z": 3 ,"name": "left-middle"  ,"id": 3},
-        4: {"x": 1,"y": 2,"z": 3 ,"name": "left-back"    ,"id": 4},
-        5: {"x": 1,"y": 2,"z": 3 ,"name": "right-back"   ,"id": 5}
-        }
-    ct1 = BotCartType("ct1",dic_tmplt)
-
-    ct1.transf_lft_pts(rxyz_deg=[0,0,0 ],txyz=[1,2,3])     
-    ct1.transf_rht_pts(rxyz_deg=[0,0,90],txyz=[1,2,3])     
-    print(ct1)
-
-def test_rmul():
-    dic_tmplt = \
-        {
-        0: {"x": 1,"y": 2,"z": 3 ,"name": "right-middle","id": 0},
-        1: {"x": 1,"y": 2,"z": 3 ,"name": "right-front" ,"id": 1},
-        2: {"x": 1,"y": 2,"z": 3 ,"name": "left-front"  ,"id": 2},
-        3: {"x": 1,"y": 2,"z": 3 ,"name": "left-middle" ,"id": 3},
-        4: {"x": 1,"y": 2,"z": 3 ,"name": "left-back"   ,"id": 4},
-        5: {"x": 1,"y": 2,"z": 3 ,"name": "right-back"  ,"id": 5}
-        }
-    ct1 = BotCartType("ct1",dic_tmplt)
-    ctt = SE3.Trans(10,0,0)*ct1
-    ctr = SE3.RPY([180,0,0],unit="deg",order='zyx')*ct1
-
-    print(ct1)
-    print(ctt)
-    print(ctr)
 
 def test_loop():
     dic_tmplt = \
         {
-        0: {"x": 1 ,"y": 2 ,"z": 3  ,"name": "right-middle","id": 0},
-        1: {"x": 12,"y": 22,"z": 32 ,"name": "right-front" ,"id": 1},
-        2: {"x": 13,"y": 23,"z": 33 ,"name": "left-front"  ,"id": 2},
-        3: {"x": 14,"y": 24,"z": 34 ,"name": "left-middle" ,"id": 3},
-        4: {"x": 16,"y": 26,"z": 36 ,"name": "left-back"   ,"id": 4},
-        5: {"x": 17,"y": 27,"z": 37 ,"name": "right-back"  ,"id": 5}
+        0: {"x": {"val":1 ,"mode":"pose"},"y": {"val":2 ,"mode":"pose"},"z": {"val":3 ,"mode":"pose"},"name": "right-middle","id": 0},
+        1: {"x": {"val":12,"mode":"pose"},"y": {"val":22,"mode":"pose"},"z": {"val":32,"mode":"pose"},"name": "right-front" ,"id": 1},
+        2: {"x": {"val":13,"mode":"pose"},"y": {"val":23,"mode":"pose"},"z": {"val":33,"mode":"pose"},"name": "left-front"  ,"id": 2},
+        3: {"x": {"val":14,"mode":"pose"},"y": {"val":24,"mode":"pose"},"z": {"val":34,"mode":"pose"},"name": "left-middle" ,"id": 3},
+        4: {"x": {"val":16,"mode":"pose"},"y": {"val":26,"mode":"pose"},"z": {"val":36,"mode":"pose"},"name": "left-back"   ,"id": 4},
+        5: {"x": {"val":17,"mode":"pose"},"y": {"val":27,"mode":"pose"},"z": {"val":37,"mode":"pose"},"name": "right-back"  ,"id": 5}
         }
+        
     ct1 = BotCartType("ct1",dic_tmplt)
     ctt = SE3.Trans(4,5,6)*ct1
     ctr = SE3.RPY([10,0,0],unit="deg",order='zyx')*ct1
@@ -445,5 +392,5 @@ def test_loop():
     print(ctr == ct1)
 
 if __name__ == "__main__":
-    #test_rmul()
+
     test_loop()
