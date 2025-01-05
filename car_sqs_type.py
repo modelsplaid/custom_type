@@ -416,6 +416,7 @@ class CarSqsType(BotBaseType):
         """
         Given a trajectory index, set mode for all legs
         """
+                            
         ccart = self.ctraj_dq[traj_idx]
         ccart.set_mode_by_leg_idx(leg_idx,mode)
         self.ctraj_dq[traj_idx] = ccart
