@@ -231,12 +231,33 @@ class BotCartType(BotBaseType):
         '''
         ct_nam = self.ct_nam_arr[cart_idx]
         self.cart_dic[leg_idx][ct_nam]["mode"] = mode
-    
-    def get_mode_by_idx(self,leg_idx:int,cart_idx:int)->str:
+        
+    def set_mode_by_leg_idx(self,leg_idx:int,mode=["pose","pose","pose"]):
         '''
         leg_idx : range 0-5   map to leg 0-5
         axis_idx: range 0,1,2 map to x,y,z
         '''
+        for cart_idx in range(3):
+            ct_nam = self.ct_nam_arr[cart_idx]
+            self.cart_dic[leg_idx][ct_nam]["mode"] = mode[cart_idx]
+
+    def get_mode_by_leg_idx(self,leg_idx:int)->List[Union[str,str,str]]:
+        '''
+        leg_idx : range 0-5   map to leg 0-5
+        '''
+            
+        mode_arr = []
+        for cart_idx in range(3):
+            ct_nam = self.ct_nam_arr[cart_idx]
+            mode_arr.append(self.cart_dic[leg_idx][ct_nam]["mode"])
+        return mode_arr
+    
+    def get_mode_by_idx(self,leg_idx:int,cart_idx:int=None)->str:
+        '''
+        leg_idx : range 0-5   map to leg 0-5
+        axis_idx: range 0,1,2 map to x,y,z
+        '''
+
         ct_nam = self.ct_nam_arr[cart_idx]
         return self.cart_dic[leg_idx][ct_nam]["mode"]
     

@@ -147,7 +147,7 @@ class BotJointType(BotBaseType):
     def get_leg_name(self,leg_idx):
         return self.jt_dic[leg_idx]["name"]
     
-    def get_mode_by_idx(self,leg_idx,joint_idx)->str:
+    def get_mode_by_idx(self,leg_idx,joint_idx=None)->str:
         '''
         Given leg index and joint index, return mode
         joint_idx: range 0-2
@@ -157,7 +157,32 @@ class BotJointType(BotBaseType):
         jt_nam = self.jt_nam_arr[joint_idx]
         return self.jt_dic[leg_idx][jt_nam]["mode"]
     
-    def set_mode_by_idx(self,leg_idx,joint_idx,mode):
+    def get_mode_by_leg_idx(self,leg_idx)->List[str]:
+        '''
+        Given leg index, return all joints' mode as arr
+        leg_idx : range 0-5
+        return mode_arr: [coxa_mode,femur_mode,tibia_mode]
+        '''
+        mode_arr = [""]*self.jont_sz
+
+        for joint_idx in range(self.jont_sz):
+            jt_nam = self.jt_nam_arr[joint_idx]
+            mode_arr[joint_idx] = self.jt_dic[leg_idx][jt_nam]["mode"]
+
+        return mode_arr
+    
+    def set_mode_by_leg_idx(self,leg_idx,mode=["pose","pose","pose"]):
+        '''
+        Given leg index and joint index, set mode
+        joint_idx: range 0-2
+        leg_idx : range 0-5
+        mode: pose, torq, porq
+        '''
+        for joint_idx in range(self.jont_sz):
+            jt_nam = self.jt_nam_arr[joint_idx]
+            self.jt_dic[leg_idx][jt_nam]["mode"] = mode[joint_idx]
+    
+    def set_mode_by_idx(self,leg_idx,mode="pose",joint_idx=None):
         '''
         Given leg index and joint index, set mode
         joint_idx: range 0-2
@@ -167,7 +192,7 @@ class BotJointType(BotBaseType):
         jt_nam = self.jt_nam_arr[joint_idx]
         self.jt_dic[leg_idx][jt_nam]["mode"] = mode
     
-    def get_val_by_idx(self,leg_idx,joint_idx):
+    def get_val_by_idx(self,leg_idx,joint_idx=None)->float:
         '''
         Given leg index and joint index, return value
         joint_idx: range 0-2
