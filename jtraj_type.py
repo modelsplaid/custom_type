@@ -47,12 +47,12 @@ class JTrajType(BotBaseType):
             traj_len = kwds["traj_len"]
             jtraj_tmplt = \
                 {
-                0: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "right-middle", "id": 0},
-                1: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "right-front" , "id": 1},
-                2: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "left-front"  , "id": 2},
-                3: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "left-middle" , "id": 3},
-                4: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "left-back"   , "id": 4},
-                5: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len, "name": "right-back"  , "id": 5}
+                0: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "right-middle", "id": 0},
+                1: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "right-front" , "id": 1},
+                2: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "left-front"  , "id": 2},
+                3: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "left-middle" , "id": 3},
+                4: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "left-back"   , "id": 4},
+                5: {"coxa": [init_val]*traj_len, "femur": [init_val]*traj_len, "tibia": [init_val]*traj_len,"mode":"pose", "name": "right-back"  , "id": 5}
                 }
             
             self.name = name
@@ -65,12 +65,12 @@ class JTrajType(BotBaseType):
         Convert dictionary type and append to dequeue type trajectory
         jtraj_dic = \
         {
-        0: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-middle","id": 0},
-        1: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-front" ,"id": 1},
-        2: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-front"  ,"id": 2},
-        3: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-middle" ,"id": 3},
-        4: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-back"   ,"id": 4},
-        5: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-back"  ,"id": 5}
+        0: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-middle","id": 0},
+        1: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-front" ,"id": 1},
+        2: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-front"  ,"id": 2},
+        3: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-middle" ,"id": 3},
+        4: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-back"   ,"id": 4},
+        5: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-back"  ,"id": 5}
         }
         """
 
@@ -81,6 +81,9 @@ class JTrajType(BotBaseType):
                 f = jtraj_dic[i]["femur"][j]
                 t = jtraj_dic[i]["tibia"][j]
                 bj.set_arr_by_ileg(i,[c,f,t])
+                
+                # todo: here I need to set mode and name
+                
             self.jtraj_dq.append(bj)
 
     def conv_dq2dic(self)->dict:
@@ -90,24 +93,24 @@ class JTrajType(BotBaseType):
         return type: 
         jtraj_dic = \
         {
-        0: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-middle","id": 0},
-        1: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-front" ,"id": 1},
-        2: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-front"  ,"id": 2},
-        3: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-middle" ,"id": 3},
-        4: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "left-back"   ,"id": 4},
-        5: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"name": "right-back"  ,"id": 5}
+        0: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-middle","id": 0},
+        1: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-front" ,"id": 1},
+        2: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-front"  ,"id": 2},
+        3: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-middle" ,"id": 3},
+        4: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "left-back"   ,"id": 4},
+        5: {"coxa": [t1...tn],"femur": [t1...tn],"tibia": [t1...tn],"mode":"pose","name": "right-back"  ,"id": 5}
         }
         """
 
         len_sqs = len(self.jtraj_dq)
         jtraj_dic = \
             {
-            0: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "right-middle","id": 0},
-            1: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "right-front" ,"id": 1},
-            2: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "left-front"  ,"id": 2},
-            3: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "left-middle" ,"id": 3},
-            4: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "left-back"   ,"id": 4},
-            5: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"name": "right-back"  ,"id": 5}
+            0: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "right-middle","id": 0},
+            1: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "right-front" ,"id": 1},
+            2: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "left-front"  ,"id": 2},
+            3: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "left-middle" ,"id": 3},
+            4: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "left-back"   ,"id": 4},
+            5: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":"pose","name": "right-back"  ,"id": 5}
             }   
         
         for j in range(len(self.jtraj_dq)):
@@ -379,12 +382,12 @@ def test_load_json():
 
     dickey= \
         {
-        0: {"coxa": [13,14], "femur": [14,150], "tibia": [15,130], "name": "right-middle", "id": 0},
-        1: {"coxa": [16,17], "femur": [17,18 ], "tibia": [18,16 ], "name": "right-front" , "id": 1},
-        2: {"coxa": [7 ,8 ], "femur": [8 ,9  ], "tibia": [9 ,7  ], "name": "left-front"  , "id": 2},
-        3: {"coxa": [4 ,5 ], "femur": [5 ,6  ], "tibia": [6 ,4  ], "name": "left-middle" , "id": 3},
-        4: {"coxa": [1 ,2 ], "femur": [2 ,3  ], "tibia": [3 ,1  ], "name": "left-back"   , "id": 4},
-        5: {"coxa": [10,11], "femur": [11,12 ], "tibia": [12,10 ], "name": "right-back"  , "id": 5}
+        0: {"coxa": [13,14], "femur": [14,150], "tibia": [15,130],"mode":"pose", "name": "right-middle", "id": 0},
+        1: {"coxa": [16,17], "femur": [17,18 ], "tibia": [18,16 ],"mode":"pose", "name": "right-front" , "id": 1},
+        2: {"coxa": [7 ,8 ], "femur": [8 ,9  ], "tibia": [9 ,7  ],"mode":"pose", "name": "left-front"  , "id": 2},
+        3: {"coxa": [4 ,5 ], "femur": [5 ,6  ], "tibia": [6 ,4  ],"mode":"pose", "name": "left-middle" , "id": 3},
+        4: {"coxa": [1 ,2 ], "femur": [2 ,3  ], "tibia": [3 ,1  ],"mode":"pose", "name": "left-back"   , "id": 4},
+        5: {"coxa": [10,11], "femur": [11,12 ], "tibia": [12,10 ],"mode":"pose", "name": "right-back"  , "id": 5}
         }
         
     jt1 = JTrajType(name="t1",jtraj_dic=dickey)
@@ -392,12 +395,12 @@ def test_load_json():
 
     strkey= \
         {
-        "0": {"coxa": [113,14], "femur": [14,2150], "tibia": [15,3130], "name": "right-middle", "id": 0},
-        "1": {"coxa": [116,17], "femur": [17,218 ], "tibia": [18,316 ], "name": "right-front" , "id": 1},
-        "2": {"coxa": [17 ,8 ], "femur": [8 ,29  ], "tibia": [9 ,37  ], "name": "left-front"  , "id": 2},
-        "3": {"coxa": [14 ,5 ], "femur": [5 ,26  ], "tibia": [6 ,34  ], "name": "left-middle" , "id": 3},
-        "4": {"coxa": [11 ,2 ], "femur": [2 ,23  ], "tibia": [3 ,31  ], "name": "left-back"   , "id": 4},
-        "5": {"coxa": [110,11], "femur": [11,212 ], "tibia": [12,310 ], "name": "right-back"  , "id": 5}
+        "0": {"coxa": [113,14], "femur": [14,2150], "tibia": [15,3130],"mode":"pose", "name": "right-middle", "id": 0},
+        "1": {"coxa": [116,17], "femur": [17,218 ], "tibia": [18,316 ],"mode":"pose", "name": "right-front" , "id": 1},
+        "2": {"coxa": [17 ,8 ], "femur": [8 ,29  ], "tibia": [9 ,37  ],"mode":"pose", "name": "left-front"  , "id": 2},
+        "3": {"coxa": [14 ,5 ], "femur": [5 ,26  ], "tibia": [6 ,34  ],"mode":"pose", "name": "left-middle" , "id": 3},
+        "4": {"coxa": [11 ,2 ], "femur": [2 ,23  ], "tibia": [3 ,31  ],"mode":"pose", "name": "left-back"   , "id": 4},
+        "5": {"coxa": [110,11], "femur": [11,212 ], "tibia": [12,310 ],"mode":"pose", "name": "right-back"  , "id": 5}
         }
         
     jt1 = JTrajType()
@@ -417,12 +420,12 @@ def test_load_json():
 
     jtraj_tmplt = \
             {
-            0: {"coxa": [], "femur": [], "tibia": [], "name": "right-middle", "id": 0},
-            1: {"coxa": [], "femur": [], "tibia": [], "name": "right-front" , "id": 1},
-            2: {"coxa": [], "femur": [], "tibia": [], "name": "left-front"  , "id": 2},
-            3: {"coxa": [], "femur": [], "tibia": [], "name": "left-middle" , "id": 3},
-            4: {"coxa": [], "femur": [], "tibia": [], "name": "left-back"   , "id": 4},
-            5: {"coxa": [], "femur": [], "tibia": [], "name": "right-back"  , "id": 5}
+            0: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "right-middle", "id": 0},
+            1: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "right-front" , "id": 1},
+            2: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "left-front"  , "id": 2},
+            3: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "left-middle" , "id": 3},
+            4: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "left-back"   , "id": 4},
+            5: {"coxa": [], "femur": [], "tibia": [],"mode":"pose", "name": "right-back"  , "id": 5}
             }
     
     jt2 = JTrajType(jtraj_dic=jtraj_tmplt)

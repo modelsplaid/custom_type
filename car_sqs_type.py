@@ -28,12 +28,12 @@ class CarSqsType(BotBaseType):
         
         ctraj_dict type: 
         {
-        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-middle","id": 0},
-        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-front" ,"id": 1},
-        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-front"  ,"id": 2},
-        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-middle" ,"id": 3},
-        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-back"   ,"id": 4},
-        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-back"  ,"id": 5}
+        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-middle","id": 0},
+        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-front" ,"id": 1},
+        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-front"  ,"id": 2},
+        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-middle" ,"id": 3},
+        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-back"   ,"id": 4},
+        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-back"  ,"id": 5}
         }
         """
         
@@ -60,12 +60,12 @@ class CarSqsType(BotBaseType):
             traj_len = kwds["traj_len"]
             ctraj_tmplt = \
                 {
-                0: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "right-middle","id": 0},
-                1: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "right-front" ,"id": 1},
-                2: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "left-front"  ,"id": 2},
-                3: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "left-middle" ,"id": 3},
-                4: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "left-back"   ,"id": 4},
-                5: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"name": "right-back"  ,"id": 5}
+                0: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "right-middle","id": 0},
+                1: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "right-front" ,"id": 1},
+                2: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "left-front"  ,"id": 2},
+                3: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "left-middle" ,"id": 3},
+                4: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "left-back"   ,"id": 4},
+                5: {"x": [init_val]*traj_len,"y": [init_val]*traj_len,"z": [init_val]*traj_len,"mode":["pose"]*traj_len,"name": "right-back"  ,"id": 5}
                 }   
             self.conv_apnd_dic2dq(ctraj_tmplt)
             self.conv_dq2dic()
@@ -77,12 +77,12 @@ class CarSqsType(BotBaseType):
         Convert dictionary type  and append to dequeue type trajectory
         ctraj_dic = \
         {
-        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-middle","id": 0},
-        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-front" ,"id": 1},
-        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-front"  ,"id": 2},
-        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-middle" ,"id": 3},
-        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-back"   ,"id": 4},
-        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-back"  ,"id": 5}
+        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-middle","id": 0},
+        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-front" ,"id": 1},
+        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-front"  ,"id": 2},
+        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-middle" ,"id": 3},
+        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-back"   ,"id": 4},
+        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-back"  ,"id": 5}
         }
         """
         for j in range(len(ctraj_dic[0]["x"])):
@@ -92,6 +92,8 @@ class CarSqsType(BotBaseType):
                 y = ctraj_dic[i]["y"][j]
                 z = ctraj_dic[i]["z"][j]
                 bc.set_by_leg_idx(i,[x,y,z])
+                bc.set_mode_by_leg_idx(i,[ctraj_dic[i]["mode"][j]]*3)
+                
             self.ctraj_dq.append(bc)
 
     def conv_dq2dic(self)->dict:
@@ -101,23 +103,23 @@ class CarSqsType(BotBaseType):
         return type: 
         ctraj_dic = \
         {
-        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-middle","id": 0},
-        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-front" ,"id": 1},
-        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-front"  ,"id": 2},
-        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-middle" ,"id": 3},
-        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "left-back"   ,"id": 4},
-        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"name": "right-back"  ,"id": 5}
+        0: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-middle","id": 0},
+        1: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-front" ,"id": 1},
+        2: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-front"  ,"id": 2},
+        3: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-middle" ,"id": 3},
+        4: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "left-back"   ,"id": 4},
+        5: {"x": [t1...tn],"y": [t1...tn],"z": [t1...tn],"mode":["pose"]*traj_len,"name": "right-back"  ,"id": 5}
         }
         """
         len_sqs = len(self.ctraj_dq)
         ctraj_dic = \
             {
-            0: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "right-middle","id": 0},
-            1: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "right-front" ,"id": 1},
-            2: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "left-front"  ,"id": 2},
-            3: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "left-middle" ,"id": 3},
-            4: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "left-back"   ,"id": 4},
-            5: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"name": "right-back"  ,"id": 5}
+            0: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-middle","id": 0},
+            1: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-front" ,"id": 1},
+            2: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-front"  ,"id": 2},
+            3: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-middle" ,"id": 3},
+            4: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-back"   ,"id": 4},
+            5: {"x": [0]*len_sqs,"y": [0]*len_sqs,"z": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-back"  ,"id": 5}
             }   
         
         for j in range(len(self.ctraj_dq)):
@@ -125,9 +127,12 @@ class CarSqsType(BotBaseType):
             bc = self.ctraj_dq[j] # loop over BotCartType() dequeue data
             for i in range(bc.get_num_legs()):
                 [x,y,z] = bc[i]
+                
                 ctraj_dic[i]["x"][j] = x
                 ctraj_dic[i]["y"][j] = y
                 ctraj_dic[i]["z"][j] = z
+                ctraj_dic[i]["mode"][j] = bc.get_mode_by_idx(i,0)
+                
         ctraj_dic = ctraj_dic
         return ctraj_dic
 
@@ -404,7 +409,17 @@ class CarSqsType(BotBaseType):
         for leg_idx in range(self.leg_sz):
             [x,y,z] = cpose.get_pt_by_idx(leg_idx)
             self.set_one_pt(leg_idx,traj_idx,deepcopy([x,y,z]))
-
+            self.set_mode_by_traj_idx(traj_idx,leg_idx,cpose.get_mode_by_leg_idx(leg_idx))
+     
+    def set_mode_by_traj_idx(self,traj_idx:int,leg_idx:int,mode:List[str,str,str]):
+        """
+        Given a trajectory index, set mode for all legs
+        """
+        ccart = self.ctraj_dq[traj_idx]
+        ccart.set_mode_by_leg_idx(leg_idx,mode)
+        self.ctraj_dq[traj_idx] = ccart
+            
+                    
     def set_by_strkey(self,json_str):
         '''
         Json file does not support int key, Convert to int key. 
