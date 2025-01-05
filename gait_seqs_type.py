@@ -70,6 +70,13 @@ class GaitIdxSeqsType:
         leg_nam_str = self.map_nam2indx[leg_idx]
         return self.gait_seqs[tim_idx][leg_nam_str]["idx"]
 
+    def set_mode_by_idx(self,tim_idx,leg_idx,mode_str):
+        # tim_idx: time step index
+        # leg_idx: leg index, range[0,5] 
+        # mode_str: A string, which is the mode of the leg, pose or torq or porq
+        leg_nam_str = self.map_nam2indx[leg_idx]
+        self.gait_seqs[tim_idx][leg_nam_str]["mode"] = mode_str
+        
     def get_mode_by_idx(self,tim_idx,leg_idx):
         # tim_idx: time step index
         # leg_idx: leg index, range[0,5] 

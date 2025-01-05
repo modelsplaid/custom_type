@@ -14,8 +14,8 @@ class BotJointType(BotBaseType):
         if joint_dic is not None: 
             if (isinstance(joint_dic,dict) == False or isinstance(name,str)== False):
                 raise NameError('fatal error: Incorrect arguments type')
+            
         # mode: pose, torq, porq
-
         jtdic_tmplt = \
                 {
                 0: {"coxa": {"val":0,"mode":"pose"}, "femur": {"val":0,"mode":"pose"}, "tibia": {"val":0,"mode":"pose"}, "name": "right-middle", "id": 0},
@@ -146,6 +146,26 @@ class BotJointType(BotBaseType):
     
     def get_leg_name(self,leg_idx):
         return self.jt_dic[leg_idx]["name"]
+    
+    def get_mode_by_idx(self,leg_idx,joint_idx)->str:
+        '''
+        Given leg index and joint index, return mode
+        joint_idx: range 0-2
+        leg_idx : range 0-5
+        return mode: pose, torq, porq
+        '''
+        jt_nam = self.jt_nam_arr[joint_idx]
+        return self.jt_dic[leg_idx][jt_nam]["mode"]
+    
+    def set_mode_by_idx(self,leg_idx,joint_idx,mode):
+        '''
+        Given leg index and joint index, set mode
+        joint_idx: range 0-2
+        leg_idx : range 0-5
+        mode: pose, torq, porq
+        '''
+        jt_nam = self.jt_nam_arr[joint_idx]
+        self.jt_dic[leg_idx][jt_nam]["mode"] = mode
     
     def get_val_by_idx(self,leg_idx,joint_idx):
         '''
