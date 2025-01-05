@@ -411,6 +411,13 @@ class CarSqsType(BotBaseType):
             self.set_one_pt(leg_idx,traj_idx,deepcopy([x,y,z]))
             
             self.set_mode_by_traj_idx(traj_idx,leg_idx,cpose.get_mode_by_leg_idx(leg_idx))
+    
+    def get_mode_by_traj_idx(self,leg_idx:int,traj_idx:int)->List[str]:
+        """
+        Given a trajectory index, return mode for all legs
+        """
+        ccart = self.ctraj_dq[traj_idx]
+        return ccart.get_mode_by_leg_idx(leg_idx)
      
     def set_mode_by_traj_idx(self,traj_idx:int,leg_idx:int,mode:List[str]):
         """
