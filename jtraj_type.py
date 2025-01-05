@@ -81,9 +81,7 @@ class JTrajType(BotBaseType):
                 f = jtraj_dic[i]["femur"][j]
                 t = jtraj_dic[i]["tibia"][j]
                 bj.set_arr_by_ileg(i,[c,f,t])
-                
-                # todo: here , below is wrong, need to fix
-                #bj.set_mode_by_leg_idx(i,[jtraj_dic[i]["mode"]]*3)
+                bj.set_mode_by_leg_idx(i,[jtraj_dic[i]["mode"][j]]*3)
                 
             self.jtraj_dq.append(bj)
 
@@ -106,12 +104,12 @@ class JTrajType(BotBaseType):
         len_sqs = len(self.jtraj_dq)
         jtraj_dic = \
             {
-            0: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "right-middle","id": 0},
-            1: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "right-front" ,"id": 1},
-            2: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "left-front"  ,"id": 2},
-            3: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "left-middle" ,"id": 3},
-            4: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "left-back"   ,"id": 4},
-            5: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"],"name": "right-back"  ,"id": 5}
+            0: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-middle","id": 0},
+            1: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-front" ,"id": 1},
+            2: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-front"  ,"id": 2},
+            3: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-middle" ,"id": 3},
+            4: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "left-back"   ,"id": 4},
+            5: {"coxa": [0]*len_sqs,"femur": [0]*len_sqs,"tibia": [0]*len_sqs,"mode":["pose"]*len_sqs,"name": "right-back"  ,"id": 5}
             }   
         
         for j in range(len(self.jtraj_dq)):
@@ -123,6 +121,8 @@ class JTrajType(BotBaseType):
                 jtraj_dic[i]["coxa" ][j] = c
                 jtraj_dic[i]["femur"][j] = f
                 jtraj_dic[i]["tibia"][j] = t
+                
+                jtraj_dic[i]["mode"][j] = bj.get_mode_by_idx(i,0)
                 
 
         return jtraj_dic
