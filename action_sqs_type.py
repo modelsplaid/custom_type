@@ -9,7 +9,10 @@ from    typing                    import List,Union
 from custom_type.walk_dir_type    import WalkDirType
 from custom_type.valv_pump_type   import ValvPumpSqsType
 from custom_type.gait_seqs_type   import GaitIdxSeqsType
+import custom_type
 
+
+print(custom_type.gait_seqs_type.__file__)
 
 class ActionSqsType(WalkDirType):
 
