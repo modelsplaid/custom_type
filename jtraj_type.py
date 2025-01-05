@@ -127,6 +127,7 @@ class JTrajType(BotBaseType):
 
         return jtraj_dic
 
+
     def clear_dq(self):
         """
         Clear dequeue
@@ -250,6 +251,12 @@ class JTrajType(BotBaseType):
         
     def set_dq(self,jtraj_dq):
         self.jtraj_dq = jtraj_dq
+        
+    def set_mode_by_traj_idx(self,ileg:int,traj_idx:int,mode:str):
+        """
+        Set mode for all legs in a frame
+        """
+        self.jtraj_dq[traj_idx].set_mode_by_leg_idx(ileg,[mode]*3)
 
     def set_one_leg(self,leg_idx,jtraj_idx,*args,**kwds):
         """
