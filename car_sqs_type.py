@@ -230,7 +230,20 @@ class CarSqsType(BotBaseType):
         # copy value 
         result.name = "trans from " +self.name+": "
         return result
-     
+
+    def print_modes(self):
+        """
+        Print all modes of each leg
+        """
+        for i in range(self.get_traj_len()):
+
+            modes = []
+            for j in range(self.leg_sz):
+                modes = modes + [self.get_mode_by_traj_idx(j,i)]
+            
+            print("mode: "+str(modes))
+
+
     def print_table(self,keep_old=False):
         """
         Print message in a table form

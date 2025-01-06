@@ -319,6 +319,23 @@ class JTrajType(BotBaseType):
 
         return [c,f,t]
 
+    def get_mode_by_traj_idx(self,ileg:int,traj_idx:int)->str:
+        """
+        Get mode for all legs in a frame
+        """
+        return self.jtraj_dq[traj_idx].get_mode_by_leg_idx(ileg)[0]
+
+    def print_modes(self):
+        """
+        Print all modes in the trajectory
+        """
+        for i in range(len(self.jtraj_dq)):
+            modes = []
+            for j in range(self.leg_sz):
+                modes = modes + [self.get_mode_by_traj_idx(j,i)]
+            print("modes: "+str(modes))
+
+
     def iadd (self,d):
         """
         Append to current trajectory given CarSqsType or BotCartType
