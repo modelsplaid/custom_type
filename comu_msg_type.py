@@ -28,109 +28,109 @@ class BotCmuMsgType:
                     "device_id"       : 1    ,"servo_name"        : "left-back-coxa","time_stamp":0 ,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "" ,
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_2": {
                     "device_id"       : 2    ,"servo_name"        : "left-back-femur","time_stamp":0,    
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_3": {
                     "device_id"       : 3,    "servo_name"        : "left-back-tibia","time_stamp":0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_4": {
                     "device_id"       : 4    ,"servo_name"        : "left-middle-coxa","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_5": {
                     "device_id"       : 5,"servo_name"            : "left-middle-femur","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_6": {
                     "device_id"       : 6,"servo_name"            : "left-middle-tibia","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_7": {
                     "device_id"       : 7,"servo_name"            : "left-front-coxa","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_8": {
                     "device_id"       : 8,"servo_name"            : "left-front-femur","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_9": {
                     "device_id"       : 9,"servo_name"            : "left-front-tibia","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_10": {
                     "device_id"       : 10,"servo_name"           : "right-back-coxa","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_11": {
                     "device_id"       : 11,"servo_name"           : "right-back-femur","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_12": {
                     "device_id"       : 12,"servo_name"           : "right-back-tibia","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_13": {
                     "device_id"       : 13,"servo_name"           : "right-middle-coxa","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_14": {
                     "device_id"       : 14,"servo_name"           : "right-middle-femur","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_15": {
                     "device_id"       : 15,"servo_name"           : "right-middle-tibia","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_16": {
                     "device_id"       : 16,"servo_name"           : "right-front-coxa","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_17": {
                     "device_id"       : 17,"servo_name"           : "right-front-femur","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     },
                 "serial_servo_18": {
                     "device_id"       : 18,"servo_name"           : "right-front-tibia","time_stamp": 0,
                     "send_servo_valid": False,"send_servo_pos_val": 0,"send_servo_pos_stats": "","send_servo_speed_val": 0,"send_servo_speed_stats": "","send_servo_torque_val": 0,"send_servo_torque_stats": "",
                     "recv_servo_valid": False,"recv_servo_pos_val": 0,"recv_servo_pos_stats": "","recv_servo_speed_val": 0,"recv_servo_speed_stats": "","recv_servo_torque_val": 0,"recv_servo_torque_stats": "",
-                    "send_svo_mode":"pos"
+                    "send_svo_mode":"pose"
                     }
             },
             "valve_pumps":{
@@ -384,7 +384,7 @@ class BotCmuMsgType:
 
         return self.cmu_msg_dic
         
-    def set_snd_one_svo(self,svo_id:int,pulse_val:int=0,spd_raw:int=100,torq_raw:int=100,mode="pos"):
+    def set_snd_one_svo(self,svo_id:int,pulse_val:int=0,spd_raw:int=100,torq_raw:int=100,mode="pose"):
         '''
         Given svo_id, set send to servo's pulse position, raw torque value, and raw speed value  
         
