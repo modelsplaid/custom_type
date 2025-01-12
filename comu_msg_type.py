@@ -384,11 +384,6 @@ class BotCmuMsgType:
         
     def set_snd_one_svo(self,svo_id:int,pulse_val:int=0,
                         spd_raw:int=100,torq_raw:int=100,mode:str="pos"):
-
-        print("hello")        
-        print(svo_id)
-        print(mode)
-        
         '''
         Given svo_id, set send to servo's pulse position, raw torque value, and raw speed value  
         
