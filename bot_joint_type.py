@@ -76,7 +76,7 @@ class BotJointType(BotBaseType):
             f_str = " femur: ["
             t_str = " tibia: ["
             
-            print("jt_dic: ",j,",",self.jt_dic[j])
+            #print("jt_dic: ",j,",",self.jt_dic[j])
             
             c = self.jt_dic[j]["coxa"]["val"]
             f = self.jt_dic[j]["femur"]["val"]
