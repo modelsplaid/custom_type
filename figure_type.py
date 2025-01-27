@@ -379,9 +379,9 @@ class BotFigureType:
                 return int(((value - min_val) / (max_val - min_val)) * 255)
             
             # Normalize x, y, z
-            x_normalized = normalize(x, -10, 10)
-            y_normalized = normalize(y, -10, 10)
-            z_normalized = normalize(z, -10, 10)
+            x_normalized = normalize(x, -5, 5)
+            y_normalized = normalize(y, -5, 5)
+            z_normalized = normalize(z, -5, 5)
             
             # Return the RGB values
             return (x_normalized, y_normalized, z_normalized)
@@ -389,9 +389,8 @@ class BotFigureType:
         for n,one_xyz in zip(range(4, 10),leg_cforce):
             
             [r,g,b] = map_xyz_to_rgb(one_xyz)
-
             self.figure_dic["data"][n]["line"]["color"] = f"rgba({r},{g},{b}, 0.9)"  
-        print(f"-------------upd color: {r},{g},{b}")
+            
     def draw_scene(self,cob_wwrd:AxisType,axis_scale:float,\
                    scene_range_xyz:list=[0,0,0]):
         """
