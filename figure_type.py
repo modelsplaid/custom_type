@@ -4,6 +4,7 @@ import  numpy as np
 from copy                       import deepcopy
 from typing                     import List
 
+from custom_type.bot_cart_type  import BotCartType
 from custom_type.axis_type      import AxisType
 from custom_type.bot_vecs_type  import BotVecArr
 from custom_type.car_sqs_type   import CarSqsType
@@ -366,6 +367,13 @@ class BotFigureType:
         self.figure_dic["data"][10]["x"] = conta_pts_wrd.get_by_axis('x')
         self.figure_dic["data"][10]["y"] = conta_pts_wrd.get_by_axis('y')
         self.figure_dic["data"][10]["z"] = list(np.array(conta_pts_wrd.get_by_axis('z'))+dz)
+
+    def update_force(self,leg_cforce:BotCartType):
+        print("todo: update_force: -----")
+        # for n,one_force in zip(range(4, 10),leg_cforce):
+        #     [x_lst,y_lst,z_lst]=leg_cforce.get_traj_ileg(leg_id)
+
+        #     self.figure_dic["data"][n]["line"]["color"] = LEG_COLR_VP_OFF
 
     def draw_scene(self,cob_wwrd:AxisType,axis_scale:float,\
                    scene_range_xyz:list=[0,0,0]):
