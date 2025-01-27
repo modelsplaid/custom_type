@@ -158,7 +158,7 @@ class BotCartType(BotBaseType):
         self._iter_idx_ = 0
         return self
 
-    def __next__(self)->Union[List[float,float,float]]:
+    def __next__(self):
         """
         return : [x,y,z]
         """
