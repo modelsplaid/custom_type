@@ -369,12 +369,29 @@ class BotFigureType:
         self.figure_dic["data"][10]["z"] = list(np.array(conta_pts_wrd.get_by_axis('z'))+dz)
 
     def update_force(self,leg_cforce:BotCartType):
-        print("todo: update_force: -----")
-        # for n,one_force in zip(range(4, 10),leg_cforce):
-        #     [x_lst,y_lst,z_lst]=leg_cforce.get_traj_ileg(leg_id)
 
-        #     self.figure_dic["data"][n]["line"]["color"] = LEG_COLR_VP_OFF
+        def map_xyz_to_rgb(xyz):
+            x=xyz[0]
+            y=xyz[1]
+            z=xyz[2]
+            # Normalize x, y, z values to the range [0, 255]
+            def normalize(value, min_val, max_val):
+                return int(((value - min_val) / (max_val - min_val)) * 255)
+            
+            # Normalize x, y, z
+            x_normalized = normalize(x, -10, 10)
+            y_normalized = normalize(y, -10, 10)
+            z_normalized = normalize(z, -10, 10)
+            
+            # Return the RGB values
+            return (x_normalized, y_normalized, z_normalized)
 
+        for n,one_xyz in zip(range(4, 10),leg_cforce):
+            
+            [r,g,b] = map_xyz_to_rgb(one_xyz)
+
+            self.figure_dic["data"][n]["line"]["color"] = f"rgba({r},{g},{b}, 0.9)"  
+        print(f"-------------upd color: {r},{g},{b}")
     def draw_scene(self,cob_wwrd:AxisType,axis_scale:float,\
                    scene_range_xyz:list=[0,0,0]):
         """
