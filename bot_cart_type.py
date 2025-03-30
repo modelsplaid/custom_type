@@ -149,8 +149,26 @@ class BotCartType(BotBaseType):
             full_str = full_str + sr_nam_ar[j]
         full_str = "\n"+full_str
         full_str = self.name+full_str+"Action perid: "+str(self.get_act_perid())
-        return full_str      
+        return full_str  
     
+    def __iter__(self):
+        """
+        Reload iterator and return value of x, y, z
+        """
+        self._iter_idx_ = 0
+        return self
+
+    def __next__(self):
+        """
+        return : [x,y,z]
+        """
+        if self._iter_idx_ < self.get_num_legs():
+            pt = self.get_pt_by_idx(self._iter_idx_)
+            self._iter_idx_ += 1
+            return pt
+        else:
+            raise StopIteration
+        
     def print_table(self,keep_old=False):
         """
         Print message in a table form
@@ -419,14 +437,17 @@ def test_loop():
         }
         
     ct1 = BotCartType("ct1",dic_tmplt)
-    ctt = SE3.Trans(4,5,6)*ct1
-    ctr = SE3.RPY([10,0,0],unit="deg",order='zyx')*ct1
-    print(ctr)
-    print(ctt.get_num_legs())
+    
+    for ptxyz in ct1:
+        print("ptxyz: ",ptxyz)
+    # ctt = SE3.Trans(4,5,6)*ct1
+    # ctr = SE3.RPY([10,0,0],unit="deg",order='zyx')*ct1
+    # print(ctr)
+    # print(ctt.get_num_legs())
 
-    for i,pt in enumerate(ctr):
-        print(i,pt)
-    print(ctr == ct1)
+    # for i,pt in enumerate(ctr):
+    #     print(i,pt)
+    # print(ctr == ct1)
 
 if __name__ == "__main__":
 

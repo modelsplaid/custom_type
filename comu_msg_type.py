@@ -468,7 +468,7 @@ class BotCmuMsgType:
             torq_raw  = self.cmu_msg_dic["serial_servos"][svo_idx]["recv_servo_torque_val"]
             spd_raw   = self.cmu_msg_dic["serial_servos"][svo_idx]["recv_servo_speed_val" ] 
             pulse_val = self.cmu_msg_dic["serial_servos"][svo_idx]["recv_servo_pos_val"   ]
-            tstmp     = self.cmu_msg_dic["serial_servos"][svo_idx]["recv_stamp"           ]
+            tstmp     = self.cmu_msg_dic["serial_servos"][svo_idx]["time_stamp"           ]
             return [pulse_val,spd_raw,torq_raw,tstmp]
         
         else: 
