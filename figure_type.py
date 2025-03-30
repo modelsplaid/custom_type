@@ -296,10 +296,14 @@ AXIS_TMPLT = [{
     }]
 
 class BotFigureType:
-    __slots__ = ("figure_dic","name")
+    __slots__ = ("figure_dic","name","surf_mesh_idx","body_line_idxs","leg_idx_start","leg_idx_end","support_poly_idx")
 
     def __init__(self,name:str="",figure_dic:dict=None):
-
+        self.surf_mesh_idx = 0
+        self.body_line_idxs = [1,2,3]
+        self.leg_idx_start = 4
+        self.leg_idx_end = 10
+        self.support_poly_idx = 10
         # Type check
         if figure_dic is not None: 
             if (isinstance(figure_dic,dict) == False or isinstance(name,str)== False):
@@ -321,27 +325,27 @@ class BotFigureType:
         for i in range(7):
             [x,y,z] = bdy_pts_wwrd[i%6]
      
-            self.figure_dic["data"][0]["x"][i] = x
-            self.figure_dic["data"][0]["y"][i] = y
-            self.figure_dic["data"][0]["z"][i] = z
+            self.figure_dic["data"][self.surf_mesh_idx]["x"][i] = x
+            self.figure_dic["data"][self.surf_mesh_idx]["y"][i] = y
+            self.figure_dic["data"][self.surf_mesh_idx]["z"][i] = z
 
         # Body Outline
-        self.figure_dic["data"][1]["x"] = self.figure_dic["data"][0]["x"]
-        self.figure_dic["data"][1]["y"] = self.figure_dic["data"][0]["y"]
-        self.figure_dic["data"][1]["z"] = self.figure_dic["data"][0]["z"]
+        self.figure_dic["data"][self.body_line_idxs[0]]["x"] = self.figure_dic["data"][0]["x"]
+        self.figure_dic["data"][self.body_line_idxs[0]]["y"] = self.figure_dic["data"][0]["y"]
+        self.figure_dic["data"][self.body_line_idxs[0]]["z"] = self.figure_dic["data"][0]["z"]
 
-        self.figure_dic["data"][2]["x"] = [cob [0]]
-        self.figure_dic["data"][2]["y"] = [cob [1]]
-        self.figure_dic["data"][2]["z"] = [cob [2]]
+        self.figure_dic["data"][self.body_line_idxs[1]]["x"] = [cob [0]]
+        self.figure_dic["data"][self.body_line_idxs[1]]["y"] = [cob [1]]
+        self.figure_dic["data"][self.body_line_idxs[1]]["z"] = [cob [2]]
 
-        self.figure_dic["data"][3]["x"] = [head[0]]
-        self.figure_dic["data"][3]["y"] = [head[1]]
-        self.figure_dic["data"][3]["z"] = [head[2]]
+        self.figure_dic["data"][self.body_line_idxs[2]]["x"] = [head[0]]
+        self.figure_dic["data"][self.body_line_idxs[2]]["y"] = [head[1]]
+        self.figure_dic["data"][self.body_line_idxs[2]]["z"] = [head[2]]
 
         leg_id = 0
 
         if vp_act != None:
-            for n,one_act in zip(range(4, 10),vp_act):
+            for n,one_act in zip(range(self.leg_idx_start, self.leg_idx_end),vp_act):
                 [x_lst,y_lst,z_lst]=ctraj_legs_wwrd.get_traj_ileg(leg_id)
                 self.figure_dic["data"][n]["x"] = x_lst
                 self.figure_dic["data"][n]["y"] = y_lst
@@ -353,7 +357,7 @@ class BotFigureType:
                 else:
                     self.figure_dic["data"][n]["line"]["color"] = LEG_COLR
         else: 
-            for n in range(4, 10):
+            for n in range(self.leg_idx_start, self.leg_idx_end):
                 [x_lst,y_lst,z_lst] = ctraj_legs_wwrd.get_traj_ileg(leg_id)
                 self.figure_dic["data"][n]["x"] = x_lst
                 self.figure_dic["data"][n]["y"] = y_lst
@@ -364,9 +368,9 @@ class BotFigureType:
         # Hexapod Support Polygon Draw a mesh for body contact on ground
         dz = -1  # Mesh must be slightly below ground
 
-        self.figure_dic["data"][10]["x"] = conta_pts_wrd.get_by_axis('x')
-        self.figure_dic["data"][10]["y"] = conta_pts_wrd.get_by_axis('y')
-        self.figure_dic["data"][10]["z"] = list(np.array(conta_pts_wrd.get_by_axis('z'))+dz)
+        self.figure_dic["data"][self.support_poly_idx]["x"] = conta_pts_wrd.get_by_axis('x')
+        self.figure_dic["data"][self.support_poly_idx]["y"] = conta_pts_wrd.get_by_axis('y')
+        self.figure_dic["data"][self.support_poly_idx]["z"] = list(np.array(conta_pts_wrd.get_by_axis('z'))+dz)
 
     def update_force(self,leg_cforce:BotCartType):
 
@@ -379,19 +383,18 @@ class BotFigureType:
                 return int(((value - min_val) / (max_val - min_val)) * 255)
             
             # Normalize x, y, z
-            x_normalized = normalize(x, -10, 10)
-            y_normalized = normalize(y, -10, 10)
-            z_normalized = normalize(z, -10, 10)
+            x_normalized = normalize(x, -5, 5)
+            y_normalized = normalize(y, -5, 5)
+            z_normalized = normalize(z, -5, 5)
             
             # Return the RGB values
             return (x_normalized, y_normalized, z_normalized)
 
-        for n,one_xyz in zip(range(4, 10),leg_cforce):
+        for n,one_xyz in zip(range(self.leg_idx_start,self.leg_idx_end),leg_cforce):
             
             [r,g,b] = map_xyz_to_rgb(one_xyz)
-
             self.figure_dic["data"][n]["line"]["color"] = f"rgba({r},{g},{b}, 0.9)"  
-            print(f"-------------len: {n},color: {r},{g},{b}")
+            
     def draw_scene(self,cob_wwrd:AxisType,axis_scale:float,\
                    scene_range_xyz:list=[0,0,0]):
         """
