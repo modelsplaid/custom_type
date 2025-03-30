@@ -391,7 +391,7 @@ class BotFigureType:
             [r,g,b] = map_xyz_to_rgb(one_xyz)
 
             self.figure_dic["data"][n]["line"]["color"] = f"rgba({r},{g},{b}, 0.9)"  
-        print(f"-------------upd color: {r},{g},{b}")
+            print(f"-------------len: {n},color: {r},{g},{b}")
     def draw_scene(self,cob_wwrd:AxisType,axis_scale:float,\
                    scene_range_xyz:list=[0,0,0]):
         """
