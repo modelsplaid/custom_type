@@ -94,7 +94,7 @@ class WalkDirType:
         self.curdir = self.WLK_LST[dir_idx%len(self.WLK_LST)]
 
     def __str__(self):
-        fstr= "Direction is: "+str(self.curdir)   
+        fstr= "Current direction is: "+str(self.curdir)   
         return fstr
     
     def __eq__(self,obj):
