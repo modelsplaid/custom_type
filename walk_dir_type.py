@@ -16,7 +16,6 @@ class WalkDirType:
         0:'walkingforward' ,1:'walkingbackward',2: 'rotatingleft',3: 'rotatingright'
         """
         
-        print("super init")
         self.curdir = ''
         if cur_dir == '':
             self.curdir = ''

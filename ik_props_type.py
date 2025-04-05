@@ -61,6 +61,7 @@ class IKPropsType:
         """
         Return: [shift_x,shift_y,shift_z]
         """
+        
         leg_conta_shift = [0,0,0]
         leg_conta_shift[0] = self.ik_param_dic["leg_conta_shift"]["tx"]
         leg_conta_shift[1] = self.ik_param_dic["leg_conta_shift"]["ty"]
