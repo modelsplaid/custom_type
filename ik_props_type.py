@@ -7,7 +7,7 @@ sys.path.append("../")
 class IKPropsType:  
     __slots__ = ("ik_param_dic","name")
 
-    def __init__(self, name:str="",bdy_ik_dic:dict=None):
+    def __init__(self, bdy_ik_dic:dict=None,name:str=""):
 
         if (isinstance(name,str)== False):
             raise NameError('fatal error: Incorrect arguments type')

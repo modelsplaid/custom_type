@@ -1,5 +1,23 @@
 {
     "COMMENTS":"This is work forward and backward configuration, for moving up and down in vertical window, to do window cleaning",
+
+    "BDY_IK_PARAMS": 
+    {
+    "cob_tran_wgnd"   :{"tx":0,"ty":0  ,"tz":115},
+    "cob_rota_wgnd"   :{"r" :0,"p" :0  ,"y" :0  }, 
+    "leg_conta_shift" :{"tx":0,"ty":105,"tz":0  }
+    },
+    
+    "GAITS_PROPS_CFG":
+    {
+        "hip_swing_mm"    :{"default":45  ,"max":100,"min":1   },
+        "lift_swing_mm"   :{"default":10  ,"max":100,"min":1   },
+        "rot_swing_deg"   :{"default":5   ,"max":10 ,"min":-10 },
+        "step_count"      :{"default":4   ,"max":4  ,"min":4   },    
+        "stanc_period_ms" :{"default":200 ,"max":900,"min":100 },
+        "swing_period_ms" :{"default":250 ,"max":900,"min":100 },
+        "vpump_period_ms" :{"default":200 ,"max":900,"min":100 }
+    },
     "CTRAJ_IDX_SEQS_FWD": 
     {
         "0" : {"rm": {"idx":0,"mode":"pose" ,"force_dir":[-10,0,10]},"rf": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"lf": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"lm": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"rb": {"idx":0,"mode":"pose","force_dir":[-10,0,10]} ,"name": "t0  step1 move lfnt leg" },
@@ -49,6 +67,48 @@
 
         "16": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,-9]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]} ,"name": "t15 step4 move rfnt leg" },
         "17": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]} ,"name": "t15 step4 move rfnt leg" }  
-    }
+    },
 
+    "CTRAJ_IDX_SEQS_ROTL": 
+    {
+        "0" : {"rm": {"idx":0,"mode": "pose","force_dir":[-10,0,10]},"rf": {"idx":0,"mode":"pose","force_dir":[-10,5,50]},"lf": {"idx":0,"mode":"pose","force_dir":[-10,0,30]},"lm": {"idx":0,"mode":"pose","force_dir":[-10,0,30]},"lb": {"idx":0,"mode":"pose","force_dir":[-10,5,30]},"rb": {"idx":0,"mode": "pose","force_dir":[-10,0,10]}, "name": "t0  step1" },
+        "1" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":1,"mode":"pose","force_dir":[-10,5,50]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":1,"mode":"pose","force_dir":[-10,5,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t1  step1" },
+        "2" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":2,"mode":"pose","force_dir":[-10,5,50]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":2,"mode":"pose","force_dir":[-10,5,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t2  step1" },
+        "3" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"pose","force_dir":[-10,5,50]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"pose","force_dir":[-10,5,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t3  step1" },
+
+        "4" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-2 ,0,-1]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-2 ,0,-9]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]}, "name": "t4  step2" },
+        "5" : {"rm": {"idx":1,"mode": "pose","force_dir":[-10,5,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":1,"mode":"pose","force_dir":[-10,5,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t5  step2" },
+        "6" : {"rm": {"idx":2,"mode": "pose","force_dir":[-10,5,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":2,"mode":"pose","force_dir":[-10,5,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t6  step2" },
+        "7" : {"rm": {"idx":3,"mode": "pose","force_dir":[-10,5,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":3,"mode":"pose","force_dir":[-10,5,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t7  step2" },
+
+        "8" : {"rm": {"idx":3,"mode": "torq","force_dir":[-2 ,0,-1]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,-9]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":0,"mode": "torq","force_dir":[-10,0,10]}, "name": "t8  step3" },
+        "9" : {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":1,"mode":"pose","force_dir":[-10,5,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":1,"mode": "pose","force_dir":[-10,5,10]} ,"name": "t9  step3" },
+        "10": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":2,"mode":"pose","force_dir":[-10,5,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":2,"mode": "pose","force_dir":[-10,5,10]} ,"name": "t10 step3" },
+        "11": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":3,"mode":"pose","force_dir":[-10,5,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":3,"mode": "pose","force_dir":[-10,5,10]} ,"name": "t11 step3" },
+
+        "12": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":3,"mode":"torq","force_dir":[-2 ,0,-1]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":3,"mode": "torq","force_dir":[-2 ,0,-1]} ,"name": "t12 step4" },
+        "13": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,10]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,10]} ,"name": "t13 step4" }
+
+    },
+
+    "CTRAJ_IDX_SEQS_ROTR": 
+    {
+        "0" : {"rm": {"idx":0,"mode": "pose","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"pose","force_dir":[-10,0,30]},"lf": {"idx":0,"mode":"pose","force_dir":[-10,5,10]},"lm": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"pose","force_dir":[-10,0,10]},"rb": {"idx":0,"mode": "pose","force_dir":[-10,5,30]}, "name": "t0  step1" },
+        "1" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":1,"mode":"pose","force_dir":[-10,5,10]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":1,"mode": "pose","force_dir":[-10,5,30]} ,"name": "t1  step1" },
+        "2" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":2,"mode":"pose","force_dir":[-10,5,10]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":2,"mode": "pose","force_dir":[-10,5,30]} ,"name": "t2  step1" },
+        "3" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"pose","force_dir":[-10,5,10]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "pose","force_dir":[-10,5,30]} ,"name": "t3  step1" },
+
+        "4" : {"rm": {"idx":0,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-2 ,0,-1]},"lm": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-2 ,0,-9]} ,"name": "t4  step2" },
+        "5" : {"rm": {"idx":1,"mode": "pose","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":1,"mode":"pose","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t5  step2" },
+        "6" : {"rm": {"idx":2,"mode": "pose","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":2,"mode":"pose","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t6  step2" },
+        "7" : {"rm": {"idx":3,"mode": "pose","force_dir":[-10,0,30]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"pose","force_dir":[-10,0,10]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t7  step2" },
+
+        "8" : {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,-9]},"rf": {"idx":0,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-2 ,0,-1]},"lb": {"idx":0,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]}, "name": "t8  step3" },
+        "9" : {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":1,"mode":"pose","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":1,"mode":"pose","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t9  step3" },
+        "10": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":2,"mode":"pose","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":2,"mode":"pose","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t10 step3" },
+        "11": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":3,"mode":"pose","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":3,"mode":"pose","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t11 step3" },
+
+        "12": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,-9]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":2,"mode":"torq","force_dir":[-2 ,0,-1]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t12 step3" },
+        "13": {"rm": {"idx":3,"mode": "torq","force_dir":[-10,0,30]},"rf": {"idx":3,"mode":"torq","force_dir":[-10,0,30]},"lf": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lm": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"lb": {"idx":3,"mode":"torq","force_dir":[-10,0,10]},"rb": {"idx":3,"mode": "torq","force_dir":[-10,0,30]} ,"name": "t13 step3" }
+    }
 }

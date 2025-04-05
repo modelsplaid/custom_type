@@ -7,77 +7,84 @@ from    copy                      import deepcopy
 from    typing                    import List,Union
 
 from custom_type.walk_dir_type    import WalkDirType
-from custom_type.valv_pump_type   import ValvPumpSqsType
 from custom_type.gait_seqs_type   import GaitIdxSeqsType
-import custom_type
+from custom_type.gait_props_type  import GaitPropsType
+from custom_type.ik_props_type    import IKPropsType
 
+import custom_type
 
 print(custom_type.gait_seqs_type.__file__)
 
-class ActionSqsType(WalkDirType):
+class WalkCfgType(WalkDirType):
 
-    __slots__ = ("ctraj_acts_dic","vpump_acts_dic","_iter_idx_" )
-    CTRAJ_IDX_NAMS = ["CTRAJ_IDX_SEQS_FWD" ,"CTRAJ_IDX_SEQS_BKD",
-                      "CTRAJ_IDX_SEQS_ROTL","CTRAJ_IDX_SEQS_ROTR"]
+    __slots__ = ("walk_cfg_dic","_iter_idx_")
 
-    def __init__(self,act_sqs_cfg:dict=None):
+    def __init__(self,walk_cfg_dic:dict=None):
         
-        self.ctraj_acts_dic = {
-                self.WLK_FWD : GaitIdxSeqsType(),self.WLK_BKWD: GaitIdxSeqsType(),
-                self.ROT_LFT : GaitIdxSeqsType(),self.ROT_RHT : GaitIdxSeqsType()}
+        walk_cfg_tmplt = {
+            "walkingforward" : GaitIdxSeqsType(),"walkingbackward": GaitIdxSeqsType(),
+            "rotatingleft"   : GaitIdxSeqsType(),"rotatingright"  : GaitIdxSeqsType(),
+            "BDY_IK_PARAMS"  : IKPropsType(),"GAITS_PROPS_CFG": GaitPropsType(),
+        }
         
-        if act_sqs_cfg is not None:
-            self.set_by_act_dic(act_sqs_cfg)
+        self.walk_cfg_dic =  walk_cfg_tmplt
+        
+        if walk_cfg_dic == None:
+            self.walk_cfg_loader()
+        else: 
+            self.set_walk_cfg_dic(walk_cfg_dic)
+    # todo: set and get ik and walk params
+    #
     
-    def acton_sqs_loader(self,act_sqs_fil:str="./config/action_sqs_cfg.json"):
+    def walk_cfg_loader(self,act_sqs_fil:str="./custom_type/test/walk1_cfg.json"):
 
         out_file    = open(act_sqs_fil, "r")
         act_sqs_dic = json.load(out_file)
+        self.set_walk_cfg_dic(act_sqs_dic)
         
-        self.set_by_act_dic(act_sqs_dic)
-
-    def set_by_act_dic(self,act_sqs_dic:dict=None):
+    def set_walk_cur_dir_idx(self,idx:int):
+        """
+        Set current direction
+        0:'walkingforward' ,1:'walkingbackward',2: 'rotatingleft',3: 'rotatingright'
+        """
+        if idx < 0 or idx >= len(self.WLK_LST):
+            raise IndexError('fatal error: Incorrect arguments index')
+        self.set_cur_dir_idx(idx)
+        
+    def set_walk_cfg_dic(self,act_sqs_dic:dict=None):
         """
         Action of legs and valve-pumps type: 
-        CTRAJ_IDX_SEQS_FWD: Stores cartesian trajectory's index
-        {
-        "CTRAJ_IDX_SEQS_FWD": 
-            {  
-            "0" : {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 0 ,"name": "t0  step1 move lfnt leg" },
-            "1" : {"rm": 0,"rf": 0,"lf": 1,"lm": 0,"lb": 0,"rb": 0 ,"name": "t1  step1 move lfnt leg" },
-            ...
-            "15": {"rm": 3,"rf": 3,"lf": 3,"lm": 3,"lb": 3,"rb": 3 ,"name": "t15  step4 move bak leg" },
-            "16": {"rm": 0,"rf": 0,"lf": 0,"lm": 0,"lb": 0,"rb": 0 ,"name": "t16  step5 move body"    }
-            },
-        ... 
-        }
+        Examples: Seen in walk1_cfg.json
         """
-        
-        for (idx,traj_nam) in enumerate(self.CTRAJ_IDX_NAMS):
-            self.ctraj_acts_dic[self.WLK_LST[idx]].set_by_strkey(act_sqs_dic[traj_nam])
+        self.walk_cfg_dic["walkingforward" ] = GaitIdxSeqsType(act_sqs_dic["CTRAJ_IDX_SEQS_FWD" ],"fordward sqs")
+        self.walk_cfg_dic["walkingbackward"] = GaitIdxSeqsType(act_sqs_dic["CTRAJ_IDX_SEQS_BKD" ],"backward sqs")
+        self.walk_cfg_dic["rotatingleft"   ] = GaitIdxSeqsType(act_sqs_dic["CTRAJ_IDX_SEQS_ROTL"],"rotate left sqs")
+        self.walk_cfg_dic["rotatingright"  ] = GaitIdxSeqsType(act_sqs_dic["CTRAJ_IDX_SEQS_ROTR"],"rotate right sqs")
+        self.walk_cfg_dic["BDY_IK_PARAMS"  ] = IKPropsType    (act_sqs_dic["BDY_IK_PARAMS"      ],"body ik params")
+        self.walk_cfg_dic["GAITS_PROPS_CFG"] = GaitPropsType  (act_sqs_dic["GAITS_PROPS_CFG"    ],"gaits props")
             
     def get_current_acts(self)->GaitIdxSeqsType:
         cur_dir = self.get_cur_dir()
-        return deepcopy(self.ctraj_acts_dic[cur_dir])
+        return deepcopy(self.walk_cfg_dic[cur_dir])
         
     def get_fwd_acts(self)->GaitIdxSeqsType:
-        return deepcopy(self.ctraj_acts_dic[self.WLK_FWD])
+        return deepcopy(self.walk_cfg_dic[self.WLK_FWD])
 
     def get_bak_acts(self)->GaitIdxSeqsType:
-        return deepcopy(self.ctraj_acts_dic[self.WLK_BKWD])
+        return deepcopy(self.walk_cfg_dic[self.WLK_BKWD])
     
     def get_rotl_acts(self)->GaitIdxSeqsType:
-        return deepcopy(self.ctraj_acts_dic[self.ROT_LFT])
+        return deepcopy(self.walk_cfg_dic[self.ROT_LFT])
     
     def get_rotr_acts(self)->GaitIdxSeqsType:
-        return deepcopy(self.ctraj_acts_dic[self.ROT_RHT])
+        return deepcopy(self.walk_cfg_dic[self.ROT_RHT])
     
     def get_acts_by_idx(self,idx:int)->GaitIdxSeqsType:
         dir_nam = self.WLK_LST[idx%len(self.WLK_LST)]
-        return deepcopy(self.ctraj_acts_dic[dir_nam])
+        return deepcopy(self.walk_cfg_dic[dir_nam])
 
     def get_acts_by_nam(self,dir_nam:WalkDirType)->GaitIdxSeqsType:
-        cta = deepcopy(self.ctraj_acts_dic[dir_nam.get_cur_dir()])
+        cta = deepcopy(self.walk_cfg_dic[dir_nam.get_cur_dir()])
         return cta
     
     def __iter__(self):
@@ -94,8 +101,11 @@ class ActionSqsType(WalkDirType):
         
         
 if __name__ == "__main__":
-    acq = ActionSqsType()
-    acq.acton_sqs_loader()
-
-    for idx,act in enumerate(acq):
-        print(idx,act,"\n------\n")
+    acq = WalkCfgType()
+    print(acq.walk_cfg_dic["walkingforward"].get_sqs_len())
+    # acq.set_cur_dir_idx(3)
+    # print(acq.get_current_acts())
+    # print(acq.get_cur_dir())
+    # print(acq.get_acts_by_idx(0))
+    # for idx,act in enumerate(acq):
+    #    print(idx,act,"\n------\n")

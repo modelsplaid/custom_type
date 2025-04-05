@@ -108,7 +108,7 @@ from copy       import deepcopy
 class GaitPropsType:  
     __slots__ = ("gait_param_dic","name")
 
-    def __init__(self, name:str="",gait_param_dic:dict=None):
+    def __init__(self, gait_param_dic:dict=None,name:str=""):
 
         if (isinstance(name,str)== False):
             raise NameError('fatal error: Incorrect arguments type')
