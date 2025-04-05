@@ -16,13 +16,10 @@ class IKPropsType:
                 raise NameError('fatal error: Incorrect arguments type')
 
         bdy_ik_dic_tplt  = {
-            "BDY_IK_PARAMS": 
-            {
             "cob_tran_wgnd"   :{"tx":0,"ty":0  ,"tz":80},
             "cob_rota_wgnd"   :{"r":0 ,"p":0   ,"y":0  }, 
             "leg_conta_shift" :{"tx":0,"ty":110,"tz":0 }
             }
-        }
 
         if bdy_ik_dic == None: 
             self.ik_param_dic = bdy_ik_dic_tplt
@@ -43,9 +40,9 @@ class IKPropsType:
         Return [tx,ty,tz]self.bdy_leg_pts
         """
 
-        tx = self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tx"]
-        ty = self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["ty"]
-        tz = self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tz"]
+        tx = self.ik_param_dic["cob_tran_wgnd"]["tx"]
+        ty = self.ik_param_dic["cob_tran_wgnd"]["ty"]
+        tz = self.ik_param_dic["cob_tran_wgnd"]["tz"]
 
         return [tx,ty,tz]
     
@@ -54,9 +51,9 @@ class IKPropsType:
         Get roll pitch yaw rotation angle
         return: [r_deg,p_deg,y_deg]
         """
-        r_deg = self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["r"]
-        p_deg = self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["p"]
-        y_deg = self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["y"] 
+        r_deg = self.ik_param_dic["cob_rota_wgnd"]["r"]
+        p_deg = self.ik_param_dic["cob_rota_wgnd"]["p"]
+        y_deg = self.ik_param_dic["cob_rota_wgnd"]["y"] 
 
         return [r_deg,p_deg,y_deg]
     
@@ -65,15 +62,15 @@ class IKPropsType:
         Return: [shift_x,shift_y,shift_z]
         """
         leg_conta_shift = [0,0,0]
-        leg_conta_shift[0] = self.ik_param_dic["BDY_IK_PARAMS"]["leg_conta_shift"]["tx"]
-        leg_conta_shift[1] = self.ik_param_dic["BDY_IK_PARAMS"]["leg_conta_shift"]["ty"]
-        leg_conta_shift[2] = self.ik_param_dic["BDY_IK_PARAMS"]["leg_conta_shift"]["tz"]
+        leg_conta_shift[0] = self.ik_param_dic["leg_conta_shift"]["tx"]
+        leg_conta_shift[1] = self.ik_param_dic["leg_conta_shift"]["ty"]
+        leg_conta_shift[2] = self.ik_param_dic["leg_conta_shift"]["tz"]
         return leg_conta_shift
 
     def set_t_xyz(self,tx=0,ty=0,tz=0):
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tx"] = tx
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["ty"] = ty
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tz"] = tz
+        self.ik_param_dic["cob_tran_wgnd"]["tx"] = tx
+        self.ik_param_dic["cob_tran_wgnd"]["ty"] = ty
+        self.ik_param_dic["cob_tran_wgnd"]["tz"] = tz
 
     def set_ik_param_dic(self,ik_param_dic:dict=None):
         """
@@ -85,14 +82,14 @@ class IKPropsType:
         """
         Set roll pitch yaw rotation angle
         """
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["r"] = r
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["p"] = p
-        self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["y"] = y 
+        self.ik_param_dic["cob_rota_wgnd"]["r"] = r
+        self.ik_param_dic["cob_rota_wgnd"]["p"] = p
+        self.ik_param_dic["cob_rota_wgnd"]["y"] = y 
 
 
     def __str__(self):
 
-        ik_param_dic = self.ik_param_dic["BDY_IK_PARAMS"] 
+        ik_param_dic = self.ik_param_dic 
         key_arr = list(ik_param_dic.keys())
         
         str_pt = ""
@@ -111,12 +108,12 @@ class IKPropsType:
         if isinstance(obj,IKPropsType) == False: 
             return False
         
-        if  self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tx"]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tx"] or\
-            self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["ty"]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["ty"] or\
-            self.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tz"]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_tran_wgnd"]["tz"] or\
-            self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["r" ]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["r" ] or\
-            self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["p" ]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["p" ] or\
-            self.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["y" ]!= obj.ik_param_dic["BDY_IK_PARAMS"]["cob_rota_wgnd"]["y" ]   :
+        if  self.ik_param_dic["cob_tran_wgnd"]["tx"]!= obj.ik_param_dic["cob_tran_wgnd"]["tx"] or\
+            self.ik_param_dic["cob_tran_wgnd"]["ty"]!= obj.ik_param_dic["cob_tran_wgnd"]["ty"] or\
+            self.ik_param_dic["cob_tran_wgnd"]["tz"]!= obj.ik_param_dic["cob_tran_wgnd"]["tz"] or\
+            self.ik_param_dic["cob_rota_wgnd"]["r" ]!= obj.ik_param_dic["cob_rota_wgnd"]["r" ] or\
+            self.ik_param_dic["cob_rota_wgnd"]["p" ]!= obj.ik_param_dic["cob_rota_wgnd"]["p" ] or\
+            self.ik_param_dic["cob_rota_wgnd"]["y" ]!= obj.ik_param_dic["cob_rota_wgnd"]["y" ]   :
 
                 return False
 

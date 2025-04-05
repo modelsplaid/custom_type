@@ -20,6 +20,7 @@ class WalkCfgType(WalkDirType):
     __slots__ = ("walk_cfg_dic","_iter_idx_")
 
     def __init__(self,walk_cfg_dic:dict=None):
+        super().__init__('walkingforward')
         
         walk_cfg_tmplt = {
             "walkingforward" : GaitIdxSeqsType(),"walkingbackward": GaitIdxSeqsType(),
@@ -33,8 +34,6 @@ class WalkCfgType(WalkDirType):
             self.walk_cfg_loader()
         else: 
             self.set_walk_cfg_dic(walk_cfg_dic)
-    # todo: set and get ik and walk params
-    #
     
     def walk_cfg_loader(self,act_sqs_fil:str="./custom_type/test/walk1_cfg.json"):
 
@@ -62,7 +61,24 @@ class WalkCfgType(WalkDirType):
         self.walk_cfg_dic["rotatingright"  ] = GaitIdxSeqsType(act_sqs_dic["CTRAJ_IDX_SEQS_ROTR"],"rotate right sqs")
         self.walk_cfg_dic["BDY_IK_PARAMS"  ] = IKPropsType    (act_sqs_dic["BDY_IK_PARAMS"      ],"body ik params")
         self.walk_cfg_dic["GAITS_PROPS_CFG"] = GaitPropsType  (act_sqs_dic["GAITS_PROPS_CFG"    ],"gaits props")
-            
+    def get_gaits_props(self)->GaitPropsType:
+        """
+        Get gait properties
+        """
+        return deepcopy(self.walk_cfg_dic["GAITS_PROPS_CFG"])
+    
+    def get_bdy_ik_props(self)->IKPropsType:
+        """
+        Get body ik properties
+        """
+        return deepcopy(self.walk_cfg_dic["BDY_IK_PARAMS"])
+    
+    def get_cur_dir_sqs_len(self)->int:
+        """
+        Get length of gait sequence
+        """
+        return self.get_current_acts().get_sqs_len()
+    
     def get_current_acts(self)->GaitIdxSeqsType:
         cur_dir = self.get_cur_dir()
         return deepcopy(self.walk_cfg_dic[cur_dir])
@@ -103,6 +119,12 @@ class WalkCfgType(WalkDirType):
 if __name__ == "__main__":
     acq = WalkCfgType()
     print(acq.walk_cfg_dic["walkingforward"].get_sqs_len())
+    print("bdy ik: \n", str(acq.get_bdy_ik_props()))
+    print("gaits props: \n", str(acq.get_gaits_props()))
+    print("dir: ", acq.get_cur_dir())
+    print("current dir: ", acq.get_cur_dir())
+    # todo: here
+    
     # acq.set_cur_dir_idx(3)
     # print(acq.get_current_acts())
     # print(acq.get_cur_dir())

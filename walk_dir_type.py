@@ -15,6 +15,8 @@ class WalkDirType:
         Set current direction
         0:'walkingforward' ,1:'walkingbackward',2: 'rotatingleft',3: 'rotatingright'
         """
+        
+        print("super init")
         self.curdir = ''
         if cur_dir == '':
             self.curdir = ''
@@ -52,7 +54,7 @@ class WalkDirType:
         cls    = self.__class__
         result = cls.__new__(cls)
         # copy value 
-        result.curdir     = deepcopy(self.curdir  )
+        result.curdir     = deepcopy(self.curdir)
         result._iter_idx_ = deepcopy(self._iter_idx_)
 
         return result
